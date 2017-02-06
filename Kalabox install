@@ -1,0 +1,15 @@
+ How to install Kalabox on Ubuntu
+
+Debian/Ubuntu
+Installation
+
+    Download the .deb package from kalabox.io/download
+    Double-click on the .deb package to launch Software Center
+    Click the “Install” button and enter your password when prompted
+
+If you do not have the GUI-based Software Center you can install the .deb pkg on the command line.
+
+sudo apt-get update -y
+sudo apt-get install bridge-utils iptables cgroup-bin
+sudo dpkg -i kalabox.deb
+

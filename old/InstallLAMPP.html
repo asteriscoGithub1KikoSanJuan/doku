@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+	<head>
+		<title>Install LAMPP</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="css/styles.css">
+		<link rel="stylesheet" href="css/font-awesome.min.css">	
+	</head>
+	<body>
+		<div id="wrapper">
+					<h1></h1>
+					<p></p>
+					<h2></h2>
+					<p></p>
+					<h3></h3>
+					<p></p> 
+					<a href="http://git-scm.com/download/linux" target="_blank">http://git-scm.com/download/linux</a>
+					<img src="img/trees.png" title="Workflow" alt="Workflow" width="100%">
+			
+			<h1></h1>Install LAMPP/XAMPP in Ubuntu using command line
+<p></p>You can install XAMPP in Ubuntu using ppa(Personal Package Archives). This is a simple process. Open terminal and type following command.
+
+<h3></h3>sudo add-apt-repository ppa:upubuntu-com/web
+<h3></h3>sudo apt-get update
+<h3></h3>sudo apt-get install xampp
+
+<p></p>XAMPP is installed now type following command  to start XAMPP server
+
+<h3></h3>sudo /opt/lampp/lampp start
+
+<p></p>Now xampp is installed in your linux , just open web browser and type url in address bar : http://localhost/
+
+<p></p>###################################################################################
+
+<p></p>Better than xampp use LAMP open a terminal an execute the following:
+
+<h3></h3>sudo apt-get update
+<h3></h3>sudo apt-get install lamp-server^
+
+<p></p>############################################################################
+
+<p></p>Si puedes instalar un panel gráfico y te dejo el enlace de como hacerlo http://urlgeek.blogspot.mx/2013/02/panel-de-control-xampp.html
+
+<p></p>################################################################################
+
+<p></p>Buenas, como debe ejecutarse en modo super, instálate primero el gksu para suministrar credenciales en modo gráfico:
+
+<h3></h3>sudo apt install gksu
+
+<p></p>Luego creas un fichero vacío en el escritorio con el siguiente contenido (ajústalo si fuera necesario, si x64 entonces …manager-linux-x64.run):
+
+[Desktop Entry]
+Encoding=UTF-8
+Version=1.0
+Name=XAMPP
+Comment=XAMPP Control Panel Launcher
+Exec=gksudo /opt/lampp/manager-linux.run
+Icon=/opt/lampp/htdocs/favicon.ico
+Terminal=false
+Type=Application
+Categories=Utility;Application;Development;Web
+
+Lo guardas con extensión .desktop y le asignas los permisos necesarios:
+
+<h3></h3>sudo chmod +x XAMPP.desktop
+
+Listo.
+<p></p>###################################################################################
+<p></p>Gracias, a mi me ha funcionado este manual, y ya después le añadí un lanzador para el escritorio para no tener que escribir cada vez, lo único que necesito es poner la contraseña cada vez. Si alguien sabe como hacer un comando de Linux con la contraseña implícita, lo podría comentar.
+
+<h3></h3>sudo /opt/lampp/lampp stop
+
+<p></p>Esta es la instruccion que tengo en el lanzador, van al escritorio crear lanzador y así tienen un botón para poner Stop a los servicios de Xampp. “Hay que poner la contraseña cada vez, como en todo el linux” Viva la seguridad!
+
+<h3></h3><b>sudo /opt/lampp/lampp start</b>
+
+<p></p>Esta es la instruccion que tengo en el lanzador, van al escritorio crear lanzador y así tienen un botón para poner Start a los servicios de Xampp. “Hay que poner la contraseña cada vez, como en todo el linux” Viva la seguridad!
+
+Lo mismo si quieren para Restart.
+
+Puedo decir que hoy se un poco más de linux!
+		</div>
+	</body>
+</html>
+
+
+
+
+
+
+

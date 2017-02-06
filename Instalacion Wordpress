@@ -1,0 +1,54 @@
+
+Instalación
+
+La famosa Instalación en 5 minutos
+
+    Descarga el paquete de la última versión WordPress y descomprímelo en tu ordenador.
+    Sube el contenido de la carpeta WordPress (no la carpeta sino el contenido de la misma) descomprimida a tu servidor.
+    Abre http://tudominio.com/wp-admin/install.php en tu navegador y sigue el proceso de instalación, facilitando la información de conexión con la base de datos que deberá facilitarte tu proveedor de alojamiento web. Con esto deberán crearse las tablas necesarias para tu sitio. Si hay algún error, haz el favor de revisar tu archivo wp-config.php y probar de nuevo. Si vuelve a fallar visita los foros de soporte con todos los datos que puedas aportar.
+    Anota la contraseña que elijas.
+    El programa de instalación te enviará entonces a la página de acceso. Accede con el nombre de usuario y contraseña elegidos durante la instalación.
+
+Si, debido a la configuración de tu alojamiento web, no puedes realizar la instalación guiada, antes del paso 2 anterior haz lo siguiente:
+
+    Tras descomprimir el paquete de WordPress en tu ordenador abre el archivo wp-config-sample.php  con un editor de texto plano y rellena los datos de la conexión a tu base de datos.
+    Guarda el archivo como wp-config.php.
+    Vuelve al paso 2 anterior.
+
+Instalar solo el idioma
+
+Si ya tienes una instalación funcionando en inglés o cualquier otro idioma, y deseas instalar solamente el archivo para el idioma español, sigue estos sencillos pasos:
+
+    Descarga el paquete de WordPress que se corresponda con tu versión instalada.
+    Descomprime el paquete en una carpeta de tu ordenador.
+    Copia el archivo es_ES.mo que encontrarás en la carpeta /wp-content/languages a esa misma carpeta de tu instalación (si no existe la creas).
+    ¡Disfruta de tu WordPress en español de España!
+
+Actualizar
+Antes de actualizar nada, asegúrate de tener copias de seguridad de cualquier archivo que hayas modificado, como wp-config.php o .htaccess .
+
+Actualizar a 2.5 desde cualquier versión anterior de WordPress:
+
+    Elimina tus archivos de WP anteriores, guardando aquellos que hayas modificado.
+    Sube los nuevos archivos a tu servidor mediante FTP.
+    Dirige tu navegador a /wp-admin/upgrade.php.
+    ¿Esperabas algo más? ¡Pues esto es todo!
+
+Actualizaciones desde la versión 2.7:
+
+Desde la versión 2.7, WordPress incluye un sistema de actualizaciones automáticas que encontrarás en ‘Herramientas -> Actualizar‘ o en el Escritorio cuando haya una nueva versión disponible.
+
+Desde cualquiera de estos enlaces podrás actualizar WordPress a la última versión oficial disponible, y a su traducción. Con este sistema se evita tener que sustituir todos los archivos de WordPress, actualizándose solamente los que hayan sufrido cambios. Por supuesto, también puedes seguir usando el método manual descrito anteriormente.
+
+Actualizaciones desde la versión 3.0:
+
+Desde la versión 3.0, el sistema de  actualizaciones automáticas lo encontrarás en ‘Escritorio -> Actualizaciones‘ o en el mismo Escritorio. De nuevo, puedes usar el método de actualización manual como se explica más arriba.
+
+Actualizaciones desde la versión 3.7:
+
+Desde la versión 3.7, si no lo desactivas, las versiones menores (p.ej. de 3.7 a 3.7.1) se actualizan sin intervención del usuario, de modo totalmente automático. Las versiones mayores (p.ej. de 3.7.x a 3.8) se actualizan igual que en la versión 3.0.
+
+Cambios en los temas
+
+Si has modificado tus temas, es posible que debas hacerles algunos cambios. Si vas a actualizar tus temas de la versión 1.2 o anterior, hemos creado una guía especial para ti.
+

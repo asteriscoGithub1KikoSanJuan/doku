@@ -1,0 +1,151 @@
+What is the correct way to completely remove an application?
+
+sudo apt-get remove application
+sudo apt-get remove application*
+
+sudo apt-get remove --purge application
+sudo apt-get remove --purge application*
+
+sudo apt-get purge application
+sudo apt-get purge application*
+
+I also found these commands:
+
+sudo updatedb
+sudo locate application
+sudo rm -rf (file/folder name)
+
+command-line package-management
+shareimprove this question
+
+application* can on occasion give unexpected results - for example, if you have a file in the current directory named application_information, the shell would expand it before it's passed to apt-get. If this is happening and you do want the literal asterisk, 
+you can use 
+			application\* or 'application*'
+	
+application* is even more dangerous where there are no files in the current directory: apt-get uses regular expressions, no glob patterns. People have almost wiped the whole system trying to remove wine*. – Andrea Corbellini Nov 23 '13 at 9:40
+
+    apt-get remove packagename
+
+    will remove the binaries, but not the configuration or data files of the package packagename. It will also leave dependencies installed with it on installation time untouched.
+
+    apt-get purge packagename or apt-get remove --purge packagename
+
+    will remove about everything regarding the package packagename, but not the dependencies installed with it on installation. Both commands are equivalent.
+
+    Particularly useful when you want to 'start all over' with an application because you messed up the configuration. However, it does not remove configuration or data files residing in users home directories, usually in hidden folders there. There is no easy way to get those removed as well.
+
+    apt-get autoremove
+
+    removes orphaned packages, i.e. installed packages that used to be installed as an dependency, but aren't any longer. Use this after removing a package which had installed dependencies you're no longer interested in.
+
+    aptitude remove packagename or aptitude purge packagename (likewise)
+
+    will also attempt to remove other packages which were required by packagename on but are not required by any remaining packages.
+
+And many more exist. Lower-level dpkg-commands can be used (advanced), or GUI tools like Muon, Synaptic, Software Center, etc. There's no single 'correct way' of removing applications or performing other tasks interacting with your package management.
+
+The list you found are just examples. Make sure you understand the meanings and try out what it wants to do before accepting the action (you need to press Y before it actually performs the actions as proposed).
+
+The asterisk version in the question is probably wrong; apt-get accepts a regular expression and not a glob pattern as the shell. So what happens with
+
+sudo apt-get remove application*
+
+is the following:
+
+    The shell tries to expand application* looking at the files in the current directory. If (as is normally the case) it finds nothing, it returns the glob pattern unaltered (supposing bash with default behavior here --- zsh will error out).
+
+    apt-get will remove the packages whose name contains a string that satisfies the regular expression application*, that is, applicatio followed by an arbitrary number of n: applicatio, application, applicationn, libapplicatio, etc.
+
+    To see how this can be dangerous, try (without root for double safety) apt-get -s remove "wine*" (-s will simulate the thing instead of doing it) --- it will say is going to remove all packages that has "win" in their name and the dependant, almost the entire system...
+
+Probably, the command that was meant is really
+
+ sudo apt-get remove "^application.*"
+
+(note the quotes and the dot) which will remove all packages whose name starts with application.
+
+These commands,
+
+sudo updatedb                  # <-- updates the locate database (index). harmless
+sudo locate application        # <-- locates the file 'application'. harmless
+sudo rm -rf (file/folder name) # <-- removes files/dirs recursively. dangerous.
+
+are completely outside the scope of the package management. Do not remove files belonging to packages without using the package manager! It will get confused and is the wrong way to do things.
+
+If you don't know to which package a file belongs, try this:
+
+dpkg -S /path/to/file
+
+The --purge option is also handy when trying to fully remove any remaining dependencies including their config files: apt-get-autoremove --purge It's also important to note that configuration files in your home directory are unaffected by the --purge option. These you will have to remove manually. – Glutanimate Sep 14 '12 at 22:16
+	
+There was an error here: apt-get accepts RE, not globs; so apt-get remove pack* will remove all packages that starts with pac followed by zero or more k... which is normally unexpected. I edited the anser. See also askubuntu.com/questions/210976/… – Rmano Oct 9 '14 at 11:12
+
+For Ubuntu 12.04 and maybe higher, the correct method is:
+
+sudo apt-get --purge autoremove packagename
+
+As detailed here.
+
+Do not use packagename* as that can delete unintended packages and cause more problems than it solves. Or if you must, at least run it with a -s/--simulate/--dry-run flag first to see exactly what it will do without doing it.
+shareimprove this answer
+	
+you can use command :
+
+sudo apt-get purge --auto-remove packagename
+
+it will purge required packages along with dependencies that are installed with that packages. --auto-remove option (being an alias of autoremove) works similar to sudo apt-get autoremove . by using this command we can run single command
+
+sudo apt-get purge --auto-remove packagename
+
+instead of
+
+sudo apt-get purge packagename
+sudo apt-get autoremove
+
+shareimprove this answer
+	
+Though you're correct, but one can also use sudo apt-get --purge autoremove packagename. Same 1 command here – Anwar Aug 23 '16 at 18:03
+	
+Can the complete command also be written as apt-get autoremove --purge instead of apt-get purge --auto-remove ? – felwithe Nov 7 '16 at 18:41
+
+You can safely use sudo apt-get remove --purge application or sudo apt-get remove applications 99% of the time. When you use the purge flag, it simply removes all config files too. Which may or may not be what you want, depending on if you want to reinstall said application. The application* will match all applications that start with application, which are usually plugins, additional features, etc of the main application you are removing. i.e.
+
+sudo apt-get remove gedit*
+
+would remove gedit, gedit-plugins and gedit-common. Typically it is not necessary to do this, because most plugins/associated programs are dependent on the main application, and will automatically be removed (or marked for removal) when you uninstall the main application.
+
+Your last command is just to remove leftovers from applications that are known to have messy uninstallers, and it is just removing any remnants of the application.
+shareimprove this answer
+
+I got some error messages removing a package, the only way I found that worked was this:
+
+mv /var/lib/dpkg/info/package.* /tmp/
+dpkg --remove --force-remove-reinstreq package
+
+I found that although using only
+
+dpkg --remove --force-remove-reinstreq package
+
+does not remove the package it shows me the correct path to the file to move with:
+
+mv /var/lib/dpkg/info/package.* /tmp/
+
+Substitute package with your application name. Use sudo in Ubuntu, become root in Debian.
+shareimprove this answer
+
+It depends on the application you want to remove. Always be sure to check its dependencies before issuing the yes command. When you remove something by command line, it will sometimes show a handful of libraries that are no longer needed. These can be removed with apt-get autoremove.
+
+Beware that by using commands such as sudo apt-get remove --purge applicationname may remove some dependencies that are needed by other applications and, as such, might break your system.
+
+If you want to do it in the safer way, you can always remove it using just the software center or apt-get remove applicationname. If the dependencies aren't needed anymore, issue apt-get autoremove later.
+shareimprove this answer
+	
+I think the whole Debian package system was designed specifically to not remove a package if there are other packages dependent on it. You may be (helpfully) asked if you want to remove all the dependent packages too, and that is where you should actually read the list of package about to be removed, which is I think what you're trying to say. – Xen2050 Feb 25 '15 at 11:07
+
+I found this command in internet.
+
+dpkg --purge --force-depends application
+
+http://www.debian-administration.org/article/Reinstalling_packages_to_fix_problems.
+shareimprove this answer
+

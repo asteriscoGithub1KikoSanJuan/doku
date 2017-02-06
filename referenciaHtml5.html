@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+ <!-- Es importante espicificar el idioma de la Pagina -->
+<html lang="es-Es">
+	<head>
+		<title>Referencia HTML5</title>
+		<!-- Aqui se declara la codificacion con acentos -->
+		<meta charset="utf-8"> 
+		<!--en style se declaran las clases
+		Los comentariosen CSS empiezan por /* y acaban con */ -->
+		<style>
+			/*con el punto anticipado son las clases*/
+			.rojo {color:red;margin-top:32px}		
+			.azul {color:blue}
+			.naranja {color:orange;text-decoration:underline}
+			.subrayado {text-decoration:underline}
+			/*se declara clase con ancho responsivo y centrado*/
+			.imgbox{width:60%;margin:auto}
+			
+			/* sin el punto y con el nombre de etiqueta 
+			son las clases.... y se aplica a todas esas etiquetas*/
+			/*p {font-size:26px;margin-left:32px}*/
+			span {text-decoration:underline}
+			p {font-size:20px;margin-left:22px;color:blue}
+			#box1{width:500px;background-color:navy;color:white}
+			#box2{width:450px;background-color:orange;color:white}
+			div.container {
+    			width: 100%;
+    			border: 1px solid gray;
+				}
+
+			header, footer {
+    			padding: 1em;
+    			color: white;
+    			background-color: black;
+    			clear: left;
+    			text-align: center;
+				}
+
+			nav {
+    			float: left;
+    			max-width: 160px;
+    			margin: 0;
+    			padding: 1em;
+				}
+
+			nav ul {
+    			list-style-type: none;
+    			padding: 0;
+				}
+   
+			nav ul a {
+    			text-decoration: none;
+				}
+
+			article {
+    			margin-left: 90px;
+    			border-left: 1px solid gray;
+    			padding: 1em;
+    			overflow: hidden;
+				}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+
+			<header>
+   				<h1>HTML5 en un Blog  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<img src="img/pinguin2.jpg" title="Logo" width="5%"></h1>
+			</header>
+  
+			<nav>
+  				<ul>
+    				<li><a href="#">Anatomia</a></li>
+    				<li><a href="#">Cambios a Html4</a></li>
+    				<li><a href="#">Porque DOCTYPE</a></li>
+					<li><a href="http://www.google.es" target="article">Ir a Google</a></li>
+  				</ul>
+			</nav>
+
+			<article>
+  				<h1>Anatomía de un blog en HTML5</h1>
+  				<p>Una de las principales características de HTML5 son los <b>elementos de marcado con significado semántico</b>. 
+				Por nombrar algunos: header,footer,main, nav o article. 
+				El significado semántico de estos elementos supone importantes ventajas. 
+				Por ejemplo, a cada uno se le asigna un role ARIA (<em>Accessible Rich Internet Application</em>) específico por defecto. 
+				Esto ayuda a mejorar la accesibilidad a nuestra página web para los que utilicen alguna tecnología de asistencia en la navegación 
+				como pueden ser los lectores de pantalla (<em>screen readers</em>).
+		 		</p>
+				<center><img src="img/mouse.png" title="Foto technologia" alt="ratón y musica" width="20%"></center>
+			</article>
+
+			<footer>Copyright &copy; Kiko San Juan</footer>
+
+		</div>
+		<!-- La etiqueta <div> crea contenedor para agrupar contenidos-->
+		<div class="imgbox">
+			<!-- Una imagen como enlace-->
+			<a href="http://www.google.es" target="_blank">
+			<img src="img/mouse.png" title="Foto technologia" alt="ratón y musica" width="100%"></a>
+			<!-- Un texto como enlace-->
+			<a href="http://www.google.es" target="_blanc">Ir a Google</a>
+		</div>
+		<!-- La etiqueta <p> sirve para declarar párrafo de  texto
+		tambien se puede llamar o aplicar clase en ella
+		margin -> espacio, b -> negrita, strong -> resalto, 
+	i->italica, em->italica, mark-> resaltar texto br->salto de linea-->
+		<p class="rojo">Un párrafo de ejemplo</p>
+		<p>Otro párrafo de ejemplo.<br>Con salto de linea</p>
+		
+		<h1>Header o Cabecera, etiqueta para dar formato al texto</h1>
+		<h2>Etiquetas <span>"i" o "em"</span> para dar formato cursivo</h2>
+ 		<p class="rojo subrayado"><b>Lorem ipsum dolor sit amet</b>, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut <strong><i>labore et dolore</i></strong> magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p> <hr>
+		<p class="azul">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam <i>nonumy eirmod tempor invidunt</i> ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et</p><hr>
+		<p class="naranja">Lorem ipsum dolor sit amet, <em>consetetur</em> sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut</p>
+		<h2>Etiquetas "sub" o "sup" para dar formato sub o super indice</h2>
+		<p class="azul">La formula del agua H<sub>2</sub>O</p>
+		<p class="azul">La habitación tiene 20 m<sup>2</sup></p>
+		<p class="azul"><mark>Resaltar texto</mark></p>
+		<div id="box1" >
+		<p><h1>Anatomía de un blog en HTML5</h1></p>
+		<!-- Añade estos dos párrafos -->
+		<p>Una de las principales características de HTML5 son los <b>elementos de marcado con significado semántico</b>. 
+		Por nombrar algunos: <span>header</span>, <span>footer</span>, <span>main</span>, <span>nav</span> o <span>article</span>. El significado semántico de estos elementos supone importantes ventajas. 
+		Por ejemplo, a cada uno se le asigna un role ARIA (<em>Accessible Rich Internet Application</em>) específico por defecto. 
+		Esto ayuda a mejorar la accesibilidad a nuestra página web para los que utilicen alguna tecnología de asistencia en la navegación 
+		como pueden ser los lectores de pantalla (<em>screen readers</em>).
+		 </p>
+		<p>En este artículo voy a hacer un repaso de como debería ser la estructura de un blog en HTML5 intentando abarcar los elementos 
+		característicos de un blog estándar: navegación, post, fechas, comentarios, columna lateral, etc. Me he inspirado en el artículo 
+		de <em>Bruce Lawson Designing a blog with HTML5</em>, y he añadido información más actualizada. Ponte cómodo que empezamos.</p>
+		<!-- Formatea la frase "elementos de marcado con significado semántico." en negrita como texto destacado. -->
+		<!-- Formatea con cursiva enfatizada lo que está escrito en inglés -->
+		</div>
+		<div id="box2">
+		<!-- Añade la cabecera de tipo 2 con el texto "DOCTYPE" -->
+		<p><h2>DOCTYPE</h2></p>
+		<!-- Añade estos dos párrafos -->
+		<p>Al comienzo de un documento HTML5 es imprescindible poner la simple y sencilla línea:</p>
+		<p>No hacerlo hará que el navegador analice la página en quirks mode, una técnica utilizada por los navegadores modernos para emular a 
+		navegadores viejos y asegurar que viejas webs se vean bien. 
+		¿Imáginas una web moderna en HTML5 analizada como si fuese una web antigua? Estás avisado.<br>
+		No te olvides nunca de poner el &lt;!DOCTYPE html&gt;</p>
+		</div>
+		<!-- Añade una etiqueta span de clase subrayado las palabras "header, footer, main, nav o article" del primer párrafo
+		y declara la regla CSS correspondiente en el header-->
+
+		<!-- Declara una regla para todos los parrafos de la página para que la letra tenga color #444 y tamaño 20px --> 
+
+		<!-- Puedes leer el artículo completo en https://cybmeta.com/anatomia-de-un-blog-en-html5 -->
+	</body>
+</html>

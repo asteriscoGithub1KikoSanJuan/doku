@@ -1,0 +1,261 @@
+Einrichten eines lokalen LAMP-Servers
+
+(unter Linux Mint 18)
+
+Übersicht
+• Pakete installieren
+• Apache nach außen absichern
+• Dateizugriff auf /var/www/html herstellen
+• Produktionsdateien einbinden
+• Fehlermeldungen aktivieren
+• Apache case-insensitive konfigurieren
+
+• phpMyAdmin aufrufen
+• Start- und Stop-Befehl für Apache
+• mod_rewrite aktivieren
+• LAMP deinstallieren
+• Weiterführende Websites
+
+Ein LAMP-Server ist ein lokaler Webserver, der unter Linux die Produktion von dynamischen Websites unter Verwendung von PHP und MySQL auf dem eigenen lokalen Rechner ermöglicht, wodurch während der Entwicklungsphase das Hochladen von PHP-Skripten auf einen entfernten Webspace überflüssig wird. LAMP besteht aus folgenden Komponenten:
+
+• Apache 2.4.18 (Webserver)
+• PHP-Modul 7.0.8 (Skriptinterpreter)
+• MySQL-Server 5.7.16 (Datenbank)
+• phpMyAdmin 4.5.4.1 (Verwaltungsoberfläche für MySQL)
+
+Diese Anleitung beschreibt lediglich die Installation eines lokalen Webservers für die Produktion von PHP-Anwendungen. Diese Art der Installation ist aus Sicherheitsgründen nicht für einen Dienst im World Wide Web geeignet!
+Pakete installieren
+
+Die benötigte Software ist standardmäßig nicht in Linux Mint enthalten, kann aber bequem über das Terminal installiert werden:
+
+sudo apt-get install apache2 libapache2-mod-php php mysql-server phpmyadmin
+
+Installation per apturl symbol: question
+
+Alle weiteren benötigten Pakete werden über die Paketabhängigkeiten mit installiert.
+
+Die Frage ›Konfigurieren der Datenbank für phpmyadmin mit dbconfig-common?‹ kann man bejahen.
+
+Während der Installation des MySQL-Servers wird man aufgefordert, das Root-Passwort für den MySQL-Server festzulegen.
+
+Bei der Installation von phpMyAdmin ist es im Normalfall ausreichend, apache2 zu konfigurieren. (Markierung der Option im Terminal durch Leertaste)
+Apache nach außen absichern
+
+Damit Außenstehende über das Internet nicht den vollen Zugriff auf die eigenen Dateien unter localhost haben (durch Aufruf der eigenen IP-Adresse), muss der Apache-Server nach der Installation nun nach außen abgesichert werden, es sei denn, man befindet sich z. B. in einem lokalen Netzwerk hinter einem Router. Dazu ändert man mit Rootrechten die Datei ports.conf mit Hilfe eines Texteditors (z. B. Xed):
+
+gksudo xed /etc/apache2/ports.conf
+
+Der ursprüngliche Eintrag Listen 80 wird nun zu Listen 127.0.0.1:80 geändert.
+Dateizugriff auf /var/www/html herstellen
+
+Der Ordner /var/www/html ist der, auf den http://localhost/ verweist, und in dem die eigenen Produktionsdateien liegen werden.
+
+Nun haben wir aber das Problem, dass der Benutzer von Apache den Namen www-data trägt, was dazu führt, dass weder www-data noch ich als normaler Benutzer Schreibrechte für /var/www/html besitzen, da dieser Ordner bei der Installation von LAMP mit Rootrechten angelegt wurde und daher root gehört.
+
+Dies kann man aber ändern, indem man zunächst der Gruppe www-data beitritt:
+
+sudo adduser <Benutzer> www-data && newgrp www-data
+
+Der Platzhalter <Benutzer> ist durch den eigenen Benutzernamen zu ersetzen. Anschließend werden Besitzer und Gruppe von /var/www/html von root auf www-data geändert und der Gruppe www-data Schreibrechte auf dieses Verzeichnis gewährt, damit die eigenen Produktionsdateien dorthin kopiert werden können:
+
+sudo chown www-data:www-data /var/www/html && sudo chmod 775 /var/www/html
+Produktionsdateien einbinden
+
+Nun kann man die Dateien der eigenen Webprojekte in einen entsprechenden Ordner unterhalb von /var/www/html kopieren. Falls dies aufgrund von fehlenden Rechten nicht gelingen sollte, muss man sich über Strg+Alt+⬅   zunächst neu anmelden und dann das Kopieren wiederholen. Anschließend ändert man Besitzer und Gruppe dieser Dateien auf www-data:
+
+sudo chown -R www-data:www-data /var/www/html
+
+Normalerweise macht es Sinn, die Zugriffsrechte für diese Dateien nun so einzustellen, dass man selbst und www-data Lese- und Schreibzugriff besitzen:
+
+sudo find /var/www/html -type d -exec chmod 775 '{}' \;   (Ordner: rwx rwx r_x)
+sudo find /var/www/html -type f -exec chmod 664 '{}' \;   (Dateien: rw_ rw_ r__)
+
+Werden nun nachträglich weitere Ordner oder Dateien vom normalen Benutzer unterhalb von /var/www/html hinzugefügt, so sollte man sicherstellen, dass diese nach der gerade beschriebenen Methode mit den entsprechenden Rechten auf den Benutzer www-data übertragen werden, wenn PHP-Skripte auf diese Objekte Zugriff haben sollen. Zum Beispiel kann man folgendes Shellskript unter /var/www/html/www-data.sh speichern und dann im Terminal über
+
+sudo bash /var/www/html/www-data.sh
+
+ausführen lassen:
+Quelltext auswählen
+
+1
+2
+3
+4
+
+	
+
+#!/bin/bash
+chown -R www-data:www-data /var/www/html
+find /var/www/html -type d -exec chmod 775 '{}' \;
+find /var/www/html -type f -exec chmod 664 '{}' \;
+
+Fehlermeldungen aktivieren
+
+Die Anzeige von PHP-Fehlermeldungen ist per Voreinstellung deaktiviert. In einer lokalen Entwicklungsumgebung ist es daher sinnvoll, Fehlermeldungen zu aktivieren. Dies geschieht durch Bearbeiten der Datei php.ini.
+
+gksudo xed /etc/php/7.0/apache2/php.ini
+
+Hier sucht man die Zeile, die mit der Variable display_errors beginnt, und setzt den Wert von Off auf On:
+
+display_errors = On
+
+An anderer Stelle in dieser Datei findet man die Variable error_reporting, in der festgelegt wird, welche Fehler angezeigt werden. Eine Liste der möglichen Werte findet man im PHP-Handbuch. Diese Vorgabe kann in einem PHP-Skript während der Laufzeit vorübergehend durch die Funktion error_reporting() überschrieben werden.
+
+Weitere Variablen, die man hier möglicherweise einstellen möchte, sind upload_max_filesize sowie max_execution_time.
+
+Anschließend speichert man die Datei und startet den Apache-Server neu:
+
+sudo /etc/init.d/apache2 restart
+Apache case-insensitive konfigurieren
+
+Sollte der Apache-Server auf Anfrage ein PHP-Skript als Quelltext senden, statt es zu interpretieren, wenn die Dateinamenserweiterung der PHP-Datei nicht ausschließlich aus Kleinbuchstaben besteht (also z. B. .PHP statt .php), so kann man dieses Problem beheben, indem man eine Änderung in der Datei php5.conf vornimmt:
+
+gksudo xed /etc/apache2/mods-available/php7.0.conf
+
+Hier findet man folgende Zeilen:
+Quelltext auswählen
+
+1
+2
+3
+
+	
+
+<FilesMatch ".+\.ph(p[3457]?|t|tml)$">
+    SetHandler application/x-httpd-php
+</FilesMatch>
+
+Der reguläre Ausdruck .+\.ph(p[3457]?|t|tml)$ muss hier durch .+\.(?i:ph(p[3457]?|t|tml))$ ersetzt werden, wodurch die case-sensitivity auf case-insensitive gesetzt wird und somit sowohl Klein- als auch Großbuchstaben in der Dateinamenserweiterung akzeptiert werden:
+Quelltext auswählen
+
+1
+2
+3
+
+	
+
+<FilesMatch ".+\.(?i:ph(p[3457]?|t|tml))$">
+    SetHandler application/x-httpd-php
+</FilesMatch>
+
+Nach dieser Änderung die Datei speichern und schließen. Anschließend den Apache-Server neu starten:
+
+sudo /etc/init.d/apache2 restart
+
+Siehe auch: <FilesMatch>
+
+Das war’s schon. LAMP ist nun fertig installiert. Die folgenden Abschnitte sind als Anhang zu verstehen. 
+
+ phpMyAdmin aufrufen
+
+Unter http://localhost/phpmyadmin/ kann man die Benutzeroberfläche von phpMyAdmin aufrufen. Dort muss man sich als root mit dem oben festgelegten Root-Passwort für den MySQL-Server anmelden.
+
+Falls der Import von SQL-Dateien in phpMyAdmin nicht funktioniert, kann man dies auch über das Terminal erledigen:
+
+mysql -u <Benutzer> -p<Passwort> <Datenbankname> < /pfad/zur/datei/MeinBackup.sql
+
+Die Platzhalter <Benutzer>, <Passwort> und <Datenbankname> sowie der Pfad zur Backupdatei müssen angepasst werden. Kein Leerzeichen nach -p, es sei denn, es ist Teil des Passwortes!
+
+Beispielsweise:
+
+mysql -u web123 -phGtGvFeDfZHjIu usr_web123_1 < /pfad/zur/datei/MeinBackup.sql
+
+Der Export erfolgt über folgenden Befehl:
+
+mysqldump -u <Benutzer> -p<Passwort> <Datenbankname> > /pfad/zur/datei/MeinBackup.sql
+
+Weitere Informationen zu phpMyAdmin: UbuntuUsers-Wiki
+Start- und Stop-Befehl für Apache
+
+Mit folgenden Befehlen kann der Apache-Server über das Terminal gesteuert werden:
+
+sudo /etc/init.d/apache2 restart  (Neustarten)
+sudo /etc/init.d/apache2 stop  (Anhalten)
+sudo /etc/init.d/apache2 start  (Starten)
+mod_rewrite aktivieren
+
+Um das Apache-Modul mod_rewrite zu verwenden, was z. B. bei der URL-Umwandlung lokal installierter Content Management Systeme nützlich sein kann, geht man folgendermaßen vor:
+
+sudo a2enmod rewrite
+sudo /etc/init.d/apache2 force-reload
+
+Anschließend noch in der Konfigurationsdatei 000-default in der Rubrik <Directory /var/www/> den Wert von AllowOverride von None auf All ändern (s. Ausschnitt unten) und den Browser neu starten.
+
+gksudo xed /etc/apache2/sites-enabled/000-default
+Quelltext auswählen
+
+1
+2
+3
+4
+5
+6
+
+	
+
+	<Directory /var/www/>
+		Options Indexes FollowSymLinks MultiViews
+		AllowOverride All
+		Order allow,deny
+		allow from all
+	</Directory>
+
+LAMP deinstallieren
+
+Um den LAMP-Server wieder vom System zu entfernen, sollte die Deinstallation folgender Pakete ausreichen:
+
+sudo apt-get purge apache2 libapache2-mod-php php mysql-server phpmyadmin
+sudo apt-get autoremove
+Weiterführende Websites
+
+UbuntuUsers Wiki
+https://wiki.ubuntuusers.de/Apache
+    Wiki-Artikel zum Apache-Server
+UbuntuUsers Wiki
+https://wiki.ubuntuusers.de/PHP
+    Wiki-Artikel zu PHP
+UbuntuUsers Wiki
+https://wiki.ubuntuusers.de/MySQL
+    Wiki-Artikel zu MySQL
+phpMyAdmin Wiki
+http://wiki.phpmyadmin.net/
+    phpMyAdmin Wiki
+Apacheforum
+http://www.apachefriends.org/f/
+    Deutsches Apacheforum
+
+Kommentare zu dieser Seite  Neuen Kommentar eintragen
+icon: user  cracypete schrieb am Freitag, 27. Januar 2017 um 9:09 Uhr:
+Sehr gut, mache da schon länger rum und hat nie wirklich funktioniert. Jetzt funzt es ;-)
+Dem Author vielen Dank ;-)
+icon: user  Sergej snegow schrieb am Donnerstag, 14. April 2016 um 18:29 Uhr:
+Die Erste Anleitung, die einfach und (fast)vollständig das aufsetzen eines lokalen Servers zeigt mit sicherheitsrelevanten Hinweisen. Was besonders wertvoll ist: nicht nur die Hinweise zur Install sondern auch der Syntax zum Aufrufen der Programme!
+icon: user  Thomas schrieb am Dienstag, 20. Oktober 2015 um 18:14 Uhr:
+Super Erklärung, vielen Dank für das Tut. Natürlich auch für Deine Arbeit, dies alles Nobodys zu erklären.
+Ich bin vor zwei Tagen von Wind..s zu Linux gewächselt und ich muß sagen, das ich den Schritt nicht bereue.
+Gruß aus dem Norden von
+Thomas
+icon: user  Anno Nym schrieb am Freitag, 11. September 2015 um 11:33 Uhr:
+Ich schlließe mich an. Das Tutorial ist fantastisch. Ganz herzlichen Dank für Deine Arbeit.
+icon: user  Beginner schrieb am Donnerstag, 06. November 2014 um 18:01 Uhr:
+Ich habe stundenlang erfolglos rumprobiert, bis ich auf diese Anleitung gestoßen bin.
+Ich danke dem Author vielmals!!!
+icon: user  plumi schrieb am Mittwoch, 06. August 2014 um 15:37 Uhr:
+Vielen Dank für dein Tutorial! :)
+Hat alles auf Anhieb geklappt! Eine Seltenheit bei Linux-Tutorials! Weiter so! :)
+icon: user  mathi schrieb am Sonntag, 02. März 2014 um 17:09 Uhr:
+die Anleitung ist super, git sie auch für opensuse 13.1?
+vielen Dank
+Mathi
+icon: user  Niklas schrieb am Mittwoch, 24. Juli 2013 um 19:28 Uhr:
+Super Tutorial! Hat auf Anhieb funktioniert! Ich glaube das ist mir noch nie passiert.. ;) Danke :)
+icon: user  Susanne schrieb am Montag, 25. März 2013 um 9:02 Uhr:
+Großartige, einfache, klare und vor allem funktionierende Erklärung.
+Bin an der Installation verzweifelt bis ich auf Deine Seite gestoßen bin. Habe die hier vorgegebenen Schritte nachvollzogen, auf meine Linux Version angepasst und schwupp jetzt geht alles.
+Herzlichen Dank. :-)
+icon: user  Holger schrieb am Freitag, 07. September 2012 um 18:42 Uhr:
+Danke für das Kompliment. Kann mich an einen solchen Hinweis nicht erinnern, aber ich würde es einfach mit
+
+ln -s /var/www ~/web
+
+machen. Ist vielleicht nicht genau das, was du meinst, aber vielleicht ist es eine Option, je nachdem, was du genau vorhast. 

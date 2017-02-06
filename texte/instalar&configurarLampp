@@ -1,0 +1,126 @@
+18 Instalar y configurar LAMPP
+
+LAMPP es el XAMPP para linux. Para crear un servidor en local.
+
+La siguiente configuración es óptima para ejecutar Joomla en el servidor, pero también servirá para otros CMS como drupal, wordpress, phpbb, etc.
+
+#18.1 Instalar y configurar LAMPP
+
+1. Descargar e instalar LAMPP
+2. Descomprimir en la carpeta /opt/
+Ver código
+
+sudo tar xvfz xampp-linux-1.7.7.tar.gz -C /opt
+
+3. Instalar la librería ia32-libs (se utiliza para poder ejecutar lampp sobre arquitectura x64)
+Ver código
+
+sudo apt-get install ia32-libs
+
+4. Configurar php.ini
+Ver código
+
+sudo gedit /opt/lampp/etc/php.ini
+ 
+ 
+Y cambiar los siguientes valores
+upload_max_filesize = 4M
+output_buffering = Off
+error_reporting = E_ALL & ~E_DEPRECATED
+
+ 
+
+ 
+
+5. Editar permisos
+Ver código
+
+Cambiar propietario de los archivos 
+sudo chown -R tu_usuario:tu_usuario /opt/lampp/htdocs/
+sudo chown -R tu_usuario:tu_usuario /opt/lampp/phpmyadmin/
+ 
+Cambiar propietario de apache 
+sudo gedit /opt/lampp/etc/httpd.conf
+ 
+Y cambiar los siguiente valores
+User tu_usuario
+Group tu_usuario
+
+ 
+
+6. Iniciar servidor
+Ver código
+
+sudo /opt/lampp/lampp start
+ 
+En el caso de que dé error, prueba a ejecutar:
+sudo killall -9 httpd
+Si sigue sin poder iniciarse, tendrás que mirar el archivo /opt/lampp/logs/error
+ 
+Para parar el servidor: sudo /opt/lampp/lampp stop
+Para reiniciarlo: sudo /opt/lampp/lampp restart
+
+7. Si quieres puedes configurar la seguridad del servidor (osea poner contraseñas):
+Ver código
+
+sudo /opt/lampp/lampp security
+
+Has de saber que el usuario predeterminado de LAMPP es lampp, el usuario y contraseña predeterminados para phpmyadmin y mysql es root y la contraseña en blanco.
+
+Ya puedes colocar tus archivos en /opt/lampp/htdocs
+Para ver si el servidor va bien: http://localhost/
+
+#18.2 Crear un sistema de backups automático
+
+Con LAMPP puedes crear backups de la siguiente forma:
+Ver código
+
+sudo /opt/lampp/lampp backup y_contraseña_de_mysql
+
+Si no estableciste contraseña para mysql, pues vacía.
+Tiene que estar iniciado el servidor para que pueda crear el backup
+
+Para crear el sistema de backups automático:
+
+1. Colocar en /opt/lampp/backup.sh el siguiente script
+Ver código
+
+sudo gedit /opt/lampp/backup.sh
+
+Ver código
+
+#!/bin/bash
+ 
+/opt/lampp/share/lampp/backup tu_contraseña_mysql
+for i in `ls /opt/lampp/backup -1 -u | tail --lines=+10`
+do
+ rm /opt/lampp/backup/$i
+done
+
+Pon tu password de mysql
+El valor 10 significa que se guardarán como máximo 10 backups
+
+2. Dar permisos al archivo
+Ver código
+
+sudo chown tu_usuario:tu_usuario /opt/lampp/backup.sh
+sudo chown -R tu_usuario:tu_usuario /opt/lampp/backup/
+
+3. Instalar gnome-schedule
+Ver código
+
+sudo aptitude install gnome-schedule
+
+4. Ejecutar Schedule: Aplicaciones > Herramientas del Sistema > Tareas programadas
+5. Crear nueva tarea que se ejecutará repetidamente
+
+Por ejemplo: de lunes a viernes a las 4am
+
+Comando: /opt/lampp/backup.sh
+Minuto: 0
+Hora: 4
+Día: *
+Mes: *
+Día de la semana: 1-5
+
+Para restaurar un backup simplemente hay que ejecutar el archivo .sh que se guarda en /opt/lampp/backup (recuerda que tienes que darle permisos de ejecución)

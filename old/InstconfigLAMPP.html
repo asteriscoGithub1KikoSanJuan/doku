@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+	<head>
+		<title>Instalar y configurar LAMPP</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="css/styles.css">
+		<link rel="stylesheet" href="css/font-awesome.min.css">	
+	</head>
+	<body>
+		<div id="wrapper">
+					<!--<h1></h1>
+					<p></p>
+					<h2></h2>
+					<p></p>
+					<h3></h3>
+					<p></p> 
+					<a href="http://git-scm.com/download/linux" target="_blank">http://git-scm.com/download/linux</a>
+					<img src="img/trees.png" title="Workflow" alt="Workflow" width="100%">-->
+			
+<h1>Instalar y configurar LAMPP</h1>
+
+<p>LAMPP es el XAMPP para linux. Para crear un servidor en local.
+
+	La siguiente configuración es óptima para ejecutar<b>Joomla</b> en el servidor, pero también servirá para otros CMS como <b>drupal</b>, <b>wordpress</b>, <b>phpbb</b>, etc.
+</p>
+<h2>Instalar y configurar LAMPP</h2>
+
+			<p>1. Descargar e instalar LAMPP</p>
+			<p>2. Descomprimir en la carpeta <b>/opt/</b></p>
+Ver código
+
+<h3>sudo tar xvfz xampp-linux-1.7.7.tar.gz -C /opt</h3>
+
+<p>3. Instalar la librería ia32-libs<7p>
+	<p> (se utiliza para poder ejecutar lampp sobre arquitectura x64)</p>
+Ver código
+
+<h3>sudo apt-get install ia32-libs</h3>
+
+	<p>4. Configurar <b>php.ini</b></p>
+Ver código
+
+<h3>sudo gedit /opt/lampp/etc/php.ini</h3>
+ 
+ 
+	<p>Y cambiar los siguientes valores</p>
+<p><b>upload_max_filesize = 4M<br>
+output_buffering = Off<br>
+error_reporting = E_ALL & ~E_DEPRECATED</b>
+</p>
+<p>5. Editar permisos</p>
+Ver código
+
+<p>Cambiar propietario de los archivos </p>
+<h3>sudo chown -R tu_usuario:tu_usuario /opt/lampp/htdocs/</h3>
+<h3>sudo chown -R tu_usuario:tu_usuario /opt/lampp/phpmyadmin/</h3>
+ 
+<p>Cambiar propietario de apache </p>
+<h3>sudo gedit /opt/lampp/etc/httpd.conf</h3>
+ 
+	<p>Y cambiar los siguiente valores</p>
+	<p><b>User tu_usuario<br>
+		Group tu_usuario</b></p>
+
+<p>6. Iniciar servidor</p>
+Ver código
+
+<h3>sudo /opt/lampp/lampp start</h3>
+ 
+<p>En el caso de que dé error, prueba a ejecutar:</p>
+<h3>sudo killall -9 httpd</h3>
+	<p>Si sigue sin poder iniciarse, tendrás que mirar el archivo <b>/opt/lampp/logs/error</b></p>
+ 
+<p>Para parar el servidor:</p> <h3>sudo /opt/lampp/lampp stop</h3>
+<p>Para reiniciarlo:</p> <h3>sudo /opt/lampp/lampp restart</h3>
+
+<p>7. Si quieres puedes configurar la seguridad del servidor (osea poner contraseñas):
+Ver código</p>
+
+<h3>sudo /opt/lampp/lampp security</h3>
+
+<p>Has de saber que el usuario predeterminado de LAMPP es lampp, el usuario y contraseña predeterminados para phpmyadmin y mysql es root y la contraseña en blanco.</p>
+
+	<p>Ya puedes colocar tus archivos en <b>/opt/lampp/htdocs</b>
+		Para ver si el servidor va bien: <b>http://localhost/</b></p>
+
+<h2>Crear un sistema de backups automático</h2>
+
+<p>Con LAMPP puedes crear backups de la siguiente forma:
+Ver código</p>
+
+<h3>sudo /opt/lampp/lampp backup y_contraseña_de_mysql</h3>
+
+<p>Si no estableciste contraseña para mysql, pues vacía.
+Tiene que estar iniciado el servidor para que pueda crear el backup
+
+Para crear el sistema de backups automático:
+
+	1. Colocar en <b>/opt/lampp/backup.sh</b> el siguiente script
+Ver código
+</p>
+<h3>sudo gedit /opt/lampp/backup.sh</h3>
+
+	<p>Ver código</p>
+
+<p><b>#!/bin/bash<br>
+ 
+/opt/lampp/share/lampp/backup tu_contraseña_mysql<br>
+for i in `ls /opt/lampp/backup -1 -u | tail --lines=+10`<br>
+do<br>
+ rm /opt/lampp/backup/$i<br>
+	done</b></p>
+
+	<p>Pon tu password de mysql<br>
+El valor 10 significa que se guardarán como máximo 10 backups<br>
+
+2. Dar permisos al archivo<br>
+Ver código
+</p>
+<h3>sudo chown tu_usuario:tu_usuario /opt/lampp/backup.sh</h3>
+<h3>sudo chown -R tu_usuario:tu_usuario /opt/lampp/backup/</h3>
+
+			<h2>3. Instalar gnome-schedule</h2>
+Ver código
+
+<h3>sudo aptitude install gnome-schedule</h3>
+
+<p>4. Ejecutar Schedule: Aplicaciones > Herramientas del Sistema > Tareas programadas<br>
+5. Crear nueva tarea que se ejecutará repetidamente<br>
+	Por ejemplo: de lunes a viernes a las 4am<br>
+
+Comando: </p>
+			<h3>/opt/lampp/backup.sh</h3>
+<p><b>Minuto: 0<br>
+Hora: 4<br>
+Día: *<br>
+Mes: *<br>
+	Día de la semana: 1-5</b></p>
+
+	<p>Para restaurar un backup simplemente hay que ejecutar el archivo <b>.sh</b> que se guarda en <b>/opt/lampp/backup</b> <br>
+		(recuerda que tienes que darle permisos de ejecución)
+			</p>
+		</div>
+	</body>
+</html>
+
+
+
+
+
+
+

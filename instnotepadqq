@@ -1,0 +1,7 @@
+To install Notepadqq from Ubuntu, simply run the following commands in a terminal:
+
+sudo add-apt-repository ppa:notepadqq-team/notepadqq
+sudo apt-get update
+sudo apt-get install notepadqq
+
+Please use git to get the latest pre-release versions.

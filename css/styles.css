@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css?family=Pangolin');
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+/*@import url('https://fonts.googleapis.com/css?family=Pacifico');
+@import url('https://fonts.googleapis.com/css?family=Lora');
+@import url('https://fonts.googleapis.com/css?family=Indie+Flower');*/
+* {
+		/* font-family: 'Pacifico', cursive; */
+		/* font-family: 'Lora', serif; */
+		font-family: 'Pangolin', cursive;
+		}
+p {
+	font-family: 'Roboto', sans-serif;
+	font-size: 15px;
+	padding-left:20px;
+    margin:0; 
+   }
+h1 {margin-top:10px;margin-bottom:10px;}
+h2 {text-align:center;padding:0 0 0 0;margin:0 0 0 0;}
+#wrapper {
+	width:90%;
+	margin:auto;
+		background-color:#33cccc;
+}
+#container {width:50%;
+	background-color:#33cccc;
+	float: right;
+	margin-right: 0px;
+	height:399px;
+	}
+	
+#header {
+	/* background-color: pink; */
+	height:90px;
+	}
+	
+#logo {
+	/* background-color:blue; */
+	width:20%;
+	float:left;
+	}
+
+	#nav {
+	/* background-color:red; */
+	width:80%;
+	float:right;
+	}
+
+	#nav li {
+	float:left; 
+	}
+
+#nav ul {
+	list-style-type:none;
+	float:right;}
+
+#nav a {display:block;
+			/* background-color:yellow; */
+			color:#9cb227;
+			min-width:80px;
+			text-decoration:none;
+			padding:10px;
+			}
+		
+#nav a:hover {text-decoration: underline;}
+
+#slide {background-image:url(../img/slide1.jpg);
+			background-repeat:no-repeat;
+			background-position:top right;
+			background-attachemen:fixed;
+			background-size:cover;
+			color:#533930;
+			height:400px;}
+			
+.textBox {
+				width:40%;
+				float:right;
+				background-color:rgba(255,255,255,0.65);
+				padding:20px;
+				margin-top:30px;
+				margin-right:30px;
+				}
+.col {width:20%; float:right ;background-color:#33cccc;padding-left: 10px;}
+#footer {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  text-align: right;
+}
+
+
+
+
+

@@ -1,0 +1,88 @@
+Installing AMPPS
+
+System Requirements
+
+Supported Operating Systems are CentOS 5.8+.
+
+Note :
+
+    You must have administrator privileges on your computer to run AMPPS.
+    There is no command line version of Ampps yet.
+
+Installation
+
+    Download the setup (.run) from AMPPS Website  http://www.ampps.com 
+
+    Open Terminal and run the following commands to install Ampps:
+
+cd /download/location
+chmod 0755 Ampps-<version>-<arch>.run
+./Ampps-<version>-<arch>.run
+
+    For Ubuntu OS use sudo privilege to run Ampps setup.
+
+sudo ./Ampps-<version>-<arch>.run
+
+    Replace <arch> with x86 for 32 Bit and x86_64 for 64 Bit.
+
+    Replace <version> with current Ampps version.
+
+Important Locations
+
+    AMPPS is installed on fixed path /usr/local/ampps.
+
+Note: You cannot change the path of Installation.
+
+    MySQL Data Directory : /usr/local/ampps/var
+
+    Web Root Directory : /usr/local/ampps/www
+
+    MySQL Default Root Password is "mysql" and is stored here : /usr/local/ampps/ampps/data/my.conf
+
+    PHP Extension Directory : /usr/local/ampps/php-5.*/lib/extensions/ext
+
+    Change Apache, MySQL and PHP Configuration from AMPPS Application only.
+
+First Run of AMPPS
+
+    When you run AMPPS for the first time make sure your Internet connection is active.
+
+Note: AMPPS doesn't support proxy yet. So you must have a Direct Internet Connection.
+
+    Now open /usr/local/ampps/Ampps from Explorer, this will take some time as it is setting up AMPPS for your Linux.
+
+    If you are using Ubuntu OS then you have to start Ampps from terminal with sudo privilege.
+
+ 
+cd /usr/local/ampps
+sudo ./Ampps
+
+    If you are facing any issues, please open a ticket at Support
+
+Just a Screenshot of Softaculous AMPPS on Linux !
+Ampps.png
+AMPPS Panel
+
+AMPPS Panel has two sections :
+Admin Panel
+
+Go to Admin Panel
+Enduser Panel
+
+Go to Enduser Panel
+Categories:
+
+    InstallHow Tos
+
+Navigation menu
+
+    Log in
+
+    Page
+    Discussion
+
+    Read
+    View source
+    View history
+
+

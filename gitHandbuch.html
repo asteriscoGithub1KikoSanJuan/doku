@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+	<head>
+		<title>Git - Handbuch</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="gitHandbuch/css/styles.css">
+		<link rel="stylesheet" href="gitHandbuch/css/font-awesome.min.css">	
+	</head>
+	<body>
+		<div id="wrapper">
+			<h1>git - Der einfache Einstieg</h1>
+			<p>eine einfache Anleitung, um git zu lernen. Kein Schnick-Schnack </p>
+					<h2>Installation unter Linux</h2>
+					<p>Wenn Sie die grundlegenden Git-Tools auf Linux über ein Binär-Installationsprogramm installieren möchten, 
+					können Sie dies in der Regel über das grundlegende Paketverwaltungs-Tool mit Ihrer Distribution durchführen. 
+					Wenn Sie auf einer Debian-basierten Distribution wie Ubuntu sind, versuchen Sie apt-get:</p>
+
+					<h3>$ sudo apt-get install git-all</h3>
+					<p>Für weitere Optionen gibt es Anweisungen für die Installation auf verschiedenen Unix-Flavours auf der 
+					Git-Website unter</p> 
+			
+					<h2>Neues Repository erstellen</h2>
+					<p> erstelle ein neues Verzeichnis, öffne es und führe </p>
+							<h3>git init</h3>
+					<p>aus, um ein neues git-Repository anzulegen. </p>
+			
+					<h2>Ein Repository auschecken</h2>
+					<p>erstelle eine Arbeitskopie, indem du folgenden Befehl ausführst:</p>
+							<h3>git clone /pfad/zum/repository</h3>
+					<p>Falls du ein entferntes Repository verwendest, benutze:</p>
+							<h3>git clone benutzername@host:/pfad/zum/repository</h3>
+					<p>ich arbeite mit folgenden Projekten:</p>
+							<h3>ADP: kiko@Satelite:/opt/lampp/htdocs/ADP$ git clone https://github.com/XaviAngular/ADP.git</h3>
+							<h3>materialize: kiko@Satelite:/opt/lampp/htdocs/materialize$ git clone https://github.com/XaviAngular/materialize.git</h3>
+							<h3>work: kiko@Satelite:/opt/lampp/htdocs/work$ git clone https://github.com/asteriscoGithub1KikoSanJuan/materialize.git</h3>
+			
+					<h2>Workflow</h2>
+					<p>Dein lokales Repository besteht aus drei "Instanzen", die von git verwaltet werden. Die erste ist deine <b>Arbeitskopie (devel)</b>, 
+						welche die echten Dateien enthält. Die zweite ist der <b>Index (master)</b>, welcher als Zwischenstufe agiert und zu guter Letzt noch der <b>HEAD</b>, 
+					der auf deinen letzten Commit zeigt. </p>
+					<img src="gitHandbuch/img/trees.png" title="Workflow" alt="Workflow" width="100%">
+		</div>
+	</body>
+</html>
+
+
+
+
+
+
+

@@ -1,0 +1,75 @@
+
+How to install bitnami redmine stack 2.6.3-0 on Ubuntu 14.04 (x64). How to install plugins on it (Contacts plugin as example).
+
+Irina Melnikova
+Added almost 2 years ago
+
+Upgrade all the packages on your server to be able to install everything correctly
+
+sudo su
+
+apt-get update
+
+apt-get upgrade
+
+Install wget or curl if you didn't install it bedore (usually both these packages are installed by default but sometimes they are not)
+
+apt-get install wget
+
+This package will allow you to avoid errors connected with gem native extensions and make command
+
+apt-get install ruby-dev
+apt-get install make g++ gcc libssl-dev
+
+Download the package from bitnami.com
+
+wget https://bitnami.com/redirect/to/51732/bitnami-redmine-2.6.3-0-linux-x64-installer.run
+
+Add needed permissions and make the installer executable
+
+chmod +x  bitnami-redmine-2.6.3-0-linux-x64-installer.run
+
+Run the installer
+
+./bitnami-redmine-2.6.3-0-linux-x64-installer.run
+
+Wail till package will be installed. It will ask some questions, you will need to answer them.
+
+Open in your browser
+
+http://localhost:80
+
+to check that redmine is working correctly.
+
+Now we may install plugins.
+
+cd /opt/redmine-2.6.3-0/apps/redmine/htdocs/plugins
+
+copy plugins here
+
+As an example I will use CRM (Contacts) plugin PRO version.
+
+unzip redmine_contacts-3.4.5-pro.zip
+
+cd ../../../
+./use_redmine
+cd apps/redmine/htdocs
+
+To avoid gem freezes during installation use option --no-deployment
+
+bundle install --without development test --no-deployment
+
+Then create new databases and migrate data
+
+bundle exec rake redmine:plugins NAME=redmine_contacts RAILS_ENV=production
+
+and restart the application
+
+sudo /opt/redmine-2.6.3-0/ctlscript.sh restart
+
+Now you may check that plugin is installed and working correctly.
+
+The same steps will be correct if you try to install bitnami redmine stack 3.0.1-0.
+
+If you will have any questions about installation of butnami redmine stack for Ubuntu or any our plugins, please don't hesitate to contact us - support@redminecrm.com
+

@@ -1,0 +1,73 @@
+
+Install XAMPP in Ubuntu using command line
+
+23
+Saturday
+Mar 2013
+
+Posted by PHP Technology Tutorials in php	
+
+≈ 7 Comments
+
+
+You can install XAMPP in Ubuntu using ppa(Personal Package Archives). This is a simple process. Open terminal and type following command.
+
+sudo add-apt-repository ppa:upubuntu-com/web
+sudo apt-get update
+sudo apt-get install xampp
+
+XAMPP is installed now type following command  to start XAMPP server
+
+sudo /opt/lampp/lampp start
+
+Now xampp is installed in your linux , just open web browser and type url in address bar : http://localhost/
+
+###################################################################################
+
+Better than xampp use LAMP open a terminal an execute the following:
+
+sudo apt-get update
+sudo apt-get install lamp-server^
+
+############################################################################
+
+Si puedes instalar un panel gráfico y te dejo el enlace de como hacerlo http://urlgeek.blogspot.mx/2013/02/panel-de-control-xampp.html
+
+################################################################################
+
+Buenas, como debe ejecutarse en modo super, instálate primero el gksu para suministrar credenciales en modo gráfico:
+
+sudo apt install gksu
+
+Luego creas un fichero vacío en el escritorio con el siguiente contenido (ajústalo si fuera necesario, si x64 entonces …manager-linux-x64.run):
+
+[Desktop Entry]
+Encoding=UTF-8
+Version=1.0
+Name=XAMPP
+Comment=XAMPP Control Panel Launcher
+Exec=gksudo /opt/lampp/manager-linux.run
+Icon=/opt/lampp/htdocs/favicon.ico
+Terminal=false
+Type=Application
+Categories=Utility;Application;Development;Web
+
+Lo guardas con extensión .desktop y le asignas los permisos necesarios:
+
+sudo chmod +x XAMPP.desktop
+
+Listo.
+###################################################################################
+Gracias, a mi me ha funcionado este manual, y ya después le añadí un lanzador para el escritorio para no tener que escribir cada vez, lo único que necesito es poner la contraseña cada vez. Si alguien sabe como hacer un comando de Linux con la contraseña implícita, lo podría comentar.
+
+sudo /opt/lampp/lampp stop
+
+Esta es la instruccion que tengo en el lanzador, van al escritorio crear lanzador y así tienen un botón para poner Stop a los servicios de Xampp. “Hay que poner la contraseña cada vez, como en todo el linux” Viva la seguridad!
+
+<b>sudo /opt/lampp/lampp start</b>
+
+Esta es la instruccion que tengo en el lanzador, van al escritorio crear lanzador y así tienen un botón para poner Start a los servicios de Xampp. “Hay que poner la contraseña cada vez, como en todo el linux” Viva la seguridad!
+
+Lo mismo si quieren para Restart.
+
+Puedo decir que hoy se un poco más de linux!

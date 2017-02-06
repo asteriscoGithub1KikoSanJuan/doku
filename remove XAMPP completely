@@ -1,0 +1,54 @@
+
+
+This should remove XAMPP completely as they provide the uninstaller files in /opt/lampp/
+
+ sudo chmod +x /opt/lampp/uninstall
+ sudo /opt/lampp/uninstall
+
+Then you can make sure the unistallation is complete by doing user318149's answer above. cheers
+shareimprove this answer
+	
+
+sudo /opt/lampp/lampp stop 
+sudo rm -rf /opt/lampp and 
+rm -rf ~/.lampp 
+(Log files) did it for me. 
+There is no Lampp/Xampp related configs/logs in ~/.cache or ~/.local/share
+	
+
+Lampp actually have an uninstaller files in /opt/lampp/named unintaller. Just change the mode using this command
+
+    cd /opt/lampp/ to enter the directory
+    sudo chmod +x uninstaller to change it into executable file
+    ./uninstaller to run the unistaller file
+
+
+You can uninstall Xampp in ubuntu by going to terminal: Ctrl + Alt + T then type:
+
+cd /opt/lampp
+sudo ./uninstall
+
+then you get the xampp uninstaller and you can uninstall xampp. but, there are some leftover file in the lampp folder to remove it just type in terminal:
+
+sudo rm -r /opt/lampp
+
+Now xampp is removed completely.
+
+This is the full code to uninstall lampp..
+
+sudo /opt/lampp/lampp stop
+sudo chmod +x /opt/lampp/uninstall
+sudo /opt/lampp/uninstall
+sudo rm -R /opt/lampp
+
+The default directory for XAMPP is “opt/lampp”.
+
+Open the terminal and type
+
+sudo /opt/lampp/lampp stop 
+
+after this type
+
+sudo rm -rf /opt/lampp
+
+

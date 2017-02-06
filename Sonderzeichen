@@ -1,0 +1,121 @@
+
+HTML Schreibweise für ä,ö,ü,ß
+
+bevor ich mir die HTML Sonderzeichen immer suchen muss:
+
+    |Deutsch|
+    ä -> &auml;
+    Ä -> &Auml;
+    ö -> &ouml;
+    Ö -> &Ouml;
+    ü -> &uuml;
+    Ü -> &Uuml;
+    ß -> &szlig;
+    | -> |
+         &nbsp;
+         &shy;
+    ´ -> &acute;
+    ' -> &apos;
+    ¨ -> &uml;
+    ˆ -> &circ;
+    ˜ -> &tilde;
+    ¡ -> &iexcl; 
+    ¿ -> &iquest;
+    « -> &laquo;
+    » -> &raquo;
+    < -> &lt;
+    ¯ -> &macr;
+    µ -> &micro;
+    · -> &middot;
+    ¶ -> &para;
+     ⁄  -> &frasl;
+    ¦ -> &brvbar;
+    € -> &euro;
+    ¢ -> &cent;
+    £ -> &pound;
+    ¥ -> &yen;
+    & -> &amp;
+    < -> &lt;
+    > -> &gt;
+    „ -> &quot;
+    © -> &copy;
+    • -> &bull;
+    ™ -> &trade;
+    ® -> &reg;
+    § -> &sect;
+    ∼ -> &sim;
+    ± -> &plusmn;
+    − -> &minus;
+    × -> &times;
+    ∗ -> &lowast;
+    ÷ -> &divide;
+     ⁄  -> &frasl;
+    ≠ -> &ne; 
+    ½ -> &frac12;
+    ¼ -> &frac14;
+    ¾ -> &frac34;
+    Σ -> &Sigma;
+    ∑ -> &sum;
+    √ -> &radic;
+    ƒ -> &fnof;
+    ∞ -> &infin;
+    ° -> &deg;
+    ¹ &sup1;
+    ² &sup2;
+    ³ &sup3;
+    ª &ordf;
+    º &ordm;
+    Ø &Oslash;
+    ø &oslash;
+
+    | -> |
+    | Acent's |
+    ´ &acute;
+    Á &Aacute;
+    á &aacute;
+    Â &Acirc;
+    â &acirc;
+    Æ &AElig;
+    æ &aelig;
+    À &Agrave;
+    à &agrave;
+    Ã &Atilde;
+    ã &atilde;
+    Ç &Ccedil;
+    ç &ccedil;
+    ¸ &cedil;
+    É &Eacute;
+    é &eacute;
+    Ê &Ecirc;
+    ê &ecirc;
+    È &Egrave;
+    è &egrave;
+    Í &Iacute;
+    í &iacute;
+    Î &Icirc;
+    î &icirc;
+    ¡ &iexcl;
+    Ì &Igrave;
+    ì &igrave;
+    Ñ &Ntilde;
+    ñ &ntilde;
+    Ó &Oacute;
+    ó &oacute;
+    Ô &Ocirc;
+    ô &ocirc;
+    Ò &Ograve;
+    ò &ograve;
+    Õ &Otilde;
+    õ &otilde;
+    Ú &Uacute;
+    ú &uacute;
+    Û &Ucirc;
+    û &ucirc;
+    Ù &Ugrave;
+    ù &ugrave;
+    Ý &Yacute;
+    ý &yacute;
+
+Mehr Sonderzeichen / Quelle: SELFHTML
+https://wiki.selfhtml.org/wiki/Referenz:HTML/Zeichenreferenz
+
