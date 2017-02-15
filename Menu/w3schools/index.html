@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="es-Es">
+	<head>
+		<title>Dokumentation</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="stylesheet.css" type="text/css" charset="utf-8" />
+			<!--<link rel="stylesheet" href="css/styles.css">-->
+			
+<style>
+	/*---------------------------------------------------Fonts-CSS-------------------------------------------*/
+	@import url('https://fonts.googleapis.com/css?family=Pangolin');
+	@import url('https://fonts.googleapis.com/css?family=VT323');
+	@font-face{ 
+	font-family: 'input-webfont';
+	src: url('font/input-webfont.ttf') format('truetype');
+}
+	* {font-family: 'Pangolin', cursive;}
+	h1 {margin: 0 10px 0 10px;}
+	header span {
+		font-family: 'input-WebFont', Pangolin, cursive;
+		font-size: 2em;
+		float: left;
+		color: #18ffff;
+		}
+	/*---------------------------------------------------Body-CSS-------------------------------------------*/
+	body {
+		font-family: sans-serif;
+		color: #333333;
+		padding: 8em 0 3em;
+		}
+
+	body,
+		.wrapper {
+		margin: 5px;
+		/*max-width: 80em;*/
+		}
+	/*---------------------------------------------------Nav-CSS-------------------------------------------*/
+	nav,
+		nav a,
+		main,
+		article,
+		section,
+		aside {
+			border-radius: 0.5em 0.5em 0.5em 0.5em;
+			border: 1px solid;
+			padding: 10px;
+			margin: 10px;
+			}
+	
+	nav {
+	position:fixed;
+	margin: auto;
+	top: 5em;
+	}
+	
+/*---------------------------------------------------Header-CSS-------------------------------------------*/
+	header {
+		position: fixed;
+		top: 0px;
+		left: 0px;
+		right: 0px;
+		text-align: center;
+		height: 3em;
+		padding: 0;
+		margin: 0;
+		background-color: #e0e0e0;
+		border-bottom: 1px solid #d5d5d5;
+		}
+
+	header img {
+		width: 10em;
+		margin-right: 50px;
+		float: left;
+		}
+	/*---------------------------------------------------Nav-CSS-------------------------------------------*/
+	nav {
+	font-size: 0.91em;
+	float: left;
+	width: 15em;
+	padding: 0;
+	background: #fffbf0;
+	border-color: #e7c157;
+}
+
+	nav ul {
+		padding: 0;
+		}
+
+	nav li {
+		list-style: none;
+		margin: 0;
+		padding: 0.5em;
+		}
+
+	nav a {
+		display: block;
+		padding: 0.2em 10px;
+		font-weight: bold;
+		text-decoration: none;
+		background-color: #e7c157;
+		color: #333;
+		}
+
+	nav ul a {
+		font-size: 1.3em;
+		}
+
+	nav ul ul a {
+		display: block;
+		margin: 0.01em;
+		padding: 0.01em 2px;
+		font-weight: bold;
+		text-decoration: none;
+		font-size: 1em;
+		background-color: #e7c140;
+		color: #616161;
+		}
+
+	nav ul a:hover,
+	nav ul a:active {
+		color: #fffbf0;
+		background-color: #dfac20;
+		;
+		}
+
+	main {
+		display: block;
+		background: #c4ced3;
+		border-color: #8a9da8;
+		margin-left: 15em;
+		min-width: 16em;
+		/* Mindestbreite (der Überschrift) verhindert Anzeigefehler in modernen Browsern */
+		}
+	/*---------------------------------------------------Content-CSS-------------------------------------------*/
+	article {
+		background: #c4ced3;
+		color:white;
+		/*border-color: #df6c20;*/
+		margin-right: 15em;
+		}
+	article h2 {font-size: 2em;}
+	article h3 {font-size: 1.5em;}
+	article p {font-size: 1.2em;}
+	.terminal p {
+		margin: 0;
+		padding-left: 5em;
+		}
+
+	.terminal {
+    	font-family: 'VT323', monospace;
+		font-size: 1.5em;
+		margin: 5;
+		padding: 5;
+		border-radius: 0.5em 0.5em 0.5em 0.5em;
+		border: 1px solid;
+		border-color: #df6c20;
+		background-color: black;
+		color:#66ff33;
+		}
+
+
+	aside {
+		background: #ebf5d7;
+		border-color: #8db243;
+		float: right;
+		width: 12em;
+		}
+	/*---------------------------------------------------Footer-CSS-------------------------------------------*/
+	footer {
+		position: fixed;
+		padding: 10px;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		color: white;
+		background: #e0e0e0;
+		border-color: #8a9da8;
+		}
+	.row {width:100%;}
+	.box40l {width:57%;float:left;}
+	.box40l img {padding-left:1em}
+	.box40r a {padding-left:0.6em}
+	.box20 {width:18%;float: left;margin:0;text-align:center;}
+	.box20 p {font-size: 1,8em; color: grey;margin:0;}
+	.box40r {width:25%;float:right;}
+	.box40r contact {position:fixed; left:5em;}
+
+	/*footer p {
+		float: right;
+		margin: 0;
+		}*/
+/*---------------------------------------------------------Button-CSS----------------------------------------------*/
+			.btn {
+				padding: 1em;
+				margin-top: 1em;
+				margin-bottom: 2em;
+				background-color: #1de9b6;
+				border: 3px solid #1de9b6;
+				position: absolute;
+				left: 10em; right: 0;
+				}
+			.center {
+				position:absolute;
+    			top: 0;
+    			left: 0;
+    			right: 0;
+    			bottom: 0;
+				display:block;
+				}
+/*------------------------------------------------dropdown---------------------------------------------------------------------*/
+			nav ul ul {
+				display: none;
+				}
+
+			nav ul li:hover > ul {
+				display: block;
+				}
+
+/*------------------------------------------------simple dropdown---------------------------------------------------------------------*/
+			 .dropdown {
+    				position: relative;
+    				display: inline-block;
+					}
+
+			.dropdown-content {
+    				display: none;
+    				position: absolute;
+    				background-color: white;
+    				color: black;
+    				min-width: 160px;
+    				box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    				padding: 12px 16px;
+    				z-index: 1;
+					}
+
+			.dropdown:hover .dropdown-content {
+    				display: block;
+					}
+</style>
+</head>
+<!--##########################################################################################################-->
+	<body>
+<header>
+	<div class="wrapper"> 
+		<span>kiko san juan</span>
+		<!--<img src="img/kikosanjuan.png" alt="Kiko San Juan" title="Kiko San Juan">-->
+		<h1>&lt;it&gt;-Dokumentation</h1> </div>
+</header>
+<nav>
+	<ul>
+		<li><a href="#link_1.html">Startseite</a>
+		</li>
+		<li><a href="#link_2.html">Linux</a>
+			<ul>
+				<li><a href="#link_5.html">Linux 1</a>
+				</li>
+				<li><a href="#link_6.html">Linux 2</a>
+				</li>
+				<li><a href="#link_7.html">Linux 3</a>
+				</li>
+			</ul>
+		</li>
+		<li><a href="#link_3.html">HTML5</a>
+			<ul>
+				<li><a href="#bookmark">HTML-Lesezeichen</a>
+				</li>
+				<li><a href="#link_6.html">Html 2</a>
+				</li>
+				<li><a href="#link_7.html">Html 3</a>
+				</li>
+			</ul>
+		</li>
+		<li><a href="#link_4.html">CSS</a>
+			<ul>
+				<li><a href="#fixHeader">Fix Header &amp; Footer</a>
+				</li>
+				<li><a href="#link_6.html">CSS 2</a>
+				</li>
+				<li><a href="#link_7.html">CSS 3</a>
+				</li>
+			</ul>
+		</li>
+		<li><a href="#link_8.html">Kontakt</a>
+		</li>
+	</ul>
+</nav>
+<main>
+	<aside id="info">
+		<h2>Info-Box</h2>
+		<p>Mit position:fixed werden footer- und header-Element als feststehende Element definiert.
+			Mittels bottom: 0; wird der footer 0 Pixel von der Unterkante des Darstellungsbereiches
+			entfernt, also ganz unten positioniert. Der header wird mit top:0; ganz oben positioniert.
+			</p>
+	</aside>
+	<article>
+		<h2>CSS-basierte Layouts</h2>
+		<h3 id="fixHeader">feststehender Header</h3>
+		<div class="terminal">
+			<p>	header {</p>
+			<p>position: fixed;</p>
+			<p>padding: 10px;</p>
+			<p>top: 0;</p>
+			<p>left: 0;</p>
+			<p>right: 0;</p>
+			<p>text-align: center;</p>
+			<p></p>
+			<p>background: #c32e04;</p>
+			<p>border-bottom: 1px solid #d5d5d5;</p>
+			<p>}</p>
+		</div>
+		<h3>feststehender Footer</h3>
+		<div class="terminal">
+		<p>	footer {</p>
+		<p>position: fixed;</p>
+		<p>padding: 10px;</p>
+		<p>bottom: 0;</p>
+		<p>left: 0;</p>
+		<p>right: 0;</p>
+		<p>background: #c32e04;</p>
+		<p>border-color: #8a9da8;</p>
+		<p>}</p>
+		</div>
+	</article>
+	<aside id="info">
+		<h2>Info-Box</h2>
+		<p>Mit position:fixed werden footer- und header-Element als feststehende Element definiert.
+			Mittels bottom: 0; wird der footer 0 Pixel von der Unterkante des Darstellungsbereiches
+			entfernt, also ganz unten positioniert. Der header wird mit top:0; ganz oben positioniert.
+			</p>
+		<img src="img/html5.gif" alt="HTML5" title="HTML5">
+	</aside>
+	<article>
+		<h2>CSS-basierte Layouts</h2>
+		<h3 id="menu">Menu - simple dropdown </h3>
+  				<div>
+    				<div class="dropdown btn">
+ 							<span>Mouse over me</span>
+							<div class="dropdown-content">
+								<p>Hello World!</p>
+  							</div>
+					</div><br>
+		<p>css code:</p>
+					<div class="terminal">
+						<p>&lt;style&gt;</p> 
+								<p>.dropdown {</p>
+    								<p>&nbsp;&nbsp;&nbsp;position: relative;</p>
+									<p>&nbsp;&nbsp;&nbsp;display: inline-block;</p>
+									<p>&nbsp;&nbsp;&nbsp;}</p><br>
+
+								<p>.dropdown-content {</p>
+    								<p>&nbsp;&nbsp;&nbsp;display: none;</p>
+    								<p>&nbsp;&nbsp;&nbsp;position: absolute;</p>
+    								<p>&nbsp;&nbsp;&nbsp;background-color: #f9f9f9;</p>
+    								<p>&nbsp;&nbsp;&nbsp;min-width: 160px;</p>
+    								<p>&nbsp;&nbsp;&nbsp;box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);</p>
+    								<p>&nbsp;&nbsp;&nbsp;padding: 12px 16px;</p>
+    								<p>&nbsp;&nbsp;&nbsp;z-index: 1;</p>
+									<p>&nbsp;&nbsp;&nbsp;}</p><br>
+
+									<p>.dropdown:hover .dropdown-content {</p>
+    								<p>&nbsp;&nbsp;&nbsp;display: block;</p>
+									<p>}</p>
+					</div>
+					<p>html-code:</p>
+						<div class="terminal">
+							<p>&lt;div class="dropdown center"&gt;</p>
+							<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&gt;Mouse over me&lt;/span&gt;</p>
+  								<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="dropdown-content"&gt;</p>
+    								<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;Hello World!&lt;/p&gt;</p>
+  								<p>&nbsp;&nbsp;&nbsp;&lt;/div&gt;</p>
+							<p>&lt;/div&gt;</p>
+						</div> 
+				</div>
+	</article>
+	<aside id="info">
+		<h2>Info-Box</h2>
+		<p>HTML-Lesezeichen werden verwendet, um es den Lesern zu ermöglichen, auf bestimmte Teile einer Webseite zu springen. Lesezeichen können nützlich sein, wenn Ihre Webseite sehr lang ist. Um ein Lesezeichen zu erstellen, müssen Sie zuerst das Lesezeichen erstellen und dann einen Link hinzufügen.
+			Wenn die Verknüpfung angeklickt wird, blättert die Seite zu dem Ort mit dem Lesezeichen. Erstellen Sie zuerst ein Lesezeichen mit dem id-Attribut:
+			mit: id = "tips">
+			Dann fügen Sie einen Link zum Lesezeichen, von der gleichen Seite:
+				 href="#tips">
+		</p>
+	</aside>	
+	<article>
+		<h2>HTML-Tipps</h2>
+		<h3 id="bookmark">HTML - Lesezeichen</h3>
+		<br>
+
+		<p>Um ein Lesezeichen zu erstellen, müssen Sie zuerst 
+			das Lesezeichen erstellen und dann einen Link hinzufügen.</p>
+
+			<p>Erstellen Sie zuerst ein Lesezeichen mit dem id-Attribut:</p>
+			<div class="terminal">
+										&lt;h2 id = "tips"&gt; Nützliche Tipps Abschnitt &lt;/h2&gt;
+			</div>
+		<p>Dann fügen Sie einen Link zum Lesezeichen</p>
+			<div class="terminal">
+										&lt;a href="#tips"&gt; zum Abschnitt Nützliche Tipps &lt;/a&gt;
+		</div>
+		<p>Or, add a link to the bookmark ("Useful Tips Section"), from another page:</p>
+				<div class="terminal">
+										&lt;a href="html_tips.html#tips"&gt;Visit the Useful Tips Section&lt;/a&gt; 
+		</div>
+		<p>Dieser Absatz ist nur dafür da, damit Sie etwas zum Scrollen haben.</p>
+		<p>Dieser Absatz ist nur dafür da, damit Sie etwas zum Scrollen haben.</p>
+	</article>
+	</main>
+	<footer>
+		<!--<div class="wrapper"> -->
+		<div class="row">
+			<div class="box40l">
+				<img src="img/selfhtmlLogo.png" alt="selfhtmlLogo" title="selfhtmlLogo">
+				<img src="img/w3schools.png" alt="w3schools" title="w3schools">
+				<img src="img/WordPress.png" alt="Wordpress" title="Wordpress">
+				<img src="img/Git-Logo.png" alt="Git" title="Git">
+				<img src="img/ubuntu.png" alt="Ubuntu" title="Ubuntu">
+				<img src="img/apache.png" alt="Apache" title="Apache">
+				<img src="img/OpenOffice.png" alt="Open-Office" title="Open-Office">
+			</div> 
+			<div class="box20">
+				<p>&copy; 2017 by Kiko San Juan</p>
+			</div> 
+			<div class="box40r">
+				<div class="contact">
+				<a href="#kontakt.html"><img src="img/email.png" alt="email" title="email"></a>
+				<a href="#kontakt.html"><img src="img/Octocat.png" alt="Octocat" title="Octocat"></a>
+				<a href="#facebook.html"><img src="img/facebook.png" alt="facebook" title="facebook"></a>
+				<a href="#wordpressLink.html"><img src="img/WordPress-Link.png" alt="WordPress" title="WordPress"></a>
+				<a href="#kontakt.html"><img src="img/google-plus.png" alt="Google+" title="Google+"></a>
+				</div>
+			</div>
+		</div>	
+		<!--</div>-->
+	</footer>
+	</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+	<head>
+		<title>Menu - simple dropdown w3school</title>
+		<meta charset="utf-8">
+<!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+		<link rel="stylesheet" href="styles.css">
+		<link rel="stylesheet" href="css/font-awesome.min.css">
+		<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+		<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+		<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+		 <style>
+			 @import url('https://fonts.googleapis.com/css?family=Pangolin');
+			 * {font-family: 'Pangolin', cursive;}
+			.center {
+				position:absolute;
+    			margin: 0 0 0 0;
+				display:block;
+				}
+			  .boxed {
+					border: 3px solid green;
+					}
+			 .dropdown {
+    				position: relative;
+    				display: inline-block;
+					}
+
+			.dropdown-content {
+    				display: none;
+    				position: absolute;
+    				background-color: #f9f9f9;
+    				min-width: 160px;
+    				box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    				padding: 12px 16px;
+    				z-index: 1;
+					}
+
+			.dropdown:hover .dropdown-content {
+    				display: block;
+					}
+
+			   #page {width: 800px; background-color:#ffffcc;}
+			   #header {position: fixed;top:0px; width: 100%; height:60px; background-color: #e6ffe6;text-align: center;}
+			   article {width:70%;float: left; color: black;}
+			   aside { width: 30%;background-color: pink; float: right; }
+			   footer {clear: both; background-color: grey;color:white; position:fixed; left:0px; bottom:0px; height:30px; width:100%;}
+			   h1 {color: white ;background-color: blue;text-shadow-color: black; padding: 10px;}
+			   article h2 {color: white; background-color: black;}
+			   aside h2 {color: red; background-color: white; padding: 1,5em; border-radius: 8px}
+		</style>
+	</head>
+		<body>
+			
+			<div data-role="page">
+  				<div data-role="header" data-position="fixed">
+    				<h1>Menu - simple dropdown </h1>
+  				</div>
+
+  				<div data-role="main" class="ui-content">
+    				<div class="dropdown boxed center">
+ 							<span>Mouse over me</span>
+							<div class="dropdown-content">
+								<p>Hello World!</p>
+  							</div>
+					</div>
+					<div class="boxed">
+							 &lt;style&gt;<br>
+								.dropdown {<br>
+    								position: relative;<br>
+    								display: inline-block;<br>
+									}<br>
+
+								.dropdown-content {<br>
+    								display: none;<br>
+    								position: absolute;<br>
+    								background-color: #f9f9f9;<br>
+    								min-width: 160px;<br>
+    								box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);<br>
+    								padding: 12px 16px;<br>
+    								z-index: 1;<br>
+									}<br>
+
+									.dropdown:hover .dropdown-content {<br>
+    								display: block;<br>
+									}<br>
+							&lt;/style&gt;<br>
+							&lt;div class="dropdown center"&gt;<br>
+								&lt;span&gt;Mouse over me&lt;/span&gt;<br>
+  								&lt;div class="dropdown-content"&gt;<br>
+    								&lt;p&gt;Hello World!&lt;/p&gt;<br>
+  								&lt;/div&gt;<br>
+							&lt;/div&gt;<br>
+					</div> 
+				</div>
+  				<div data-role="footer" data-position="fixed">
+    				<h1>Fixed Footer</h1>
+  				</div>
+			</div>
+		</body>
+</html>
+<!--
+<h1></h1>
+<p></p>
+<h2></h2>
+<p></p>
+<h3></h3>
+<p></p> 
+<a href="http://git-scm.com/download/linux" target="_blank">http://git-scm.com/download/linux</a>
+<img src="kikosanjuanGrey.png" title="Logo" alt="Logo" width="100%">
+
+<section>…</section>
+	  <figure>…</figure>
+      <figcaption>…</figcaption>	
+
+
+
+
+

@@ -1,0 +1,32 @@
+
+Cameras are controlled by the uvcvideo kernel module.
+
+You can disable the camera until reboot by opening a terminal and typing 
+			sudo modprobe -r uvcvideo. 
+
+You will be asked for your password, and after typing it, if there are no 
+errors shown in the terminal, your webcam should be disabled.
+
+If you got the error message: modprobe: FATAL: Module uvcvideo is in use. 
+after trying to remove the uvcvideo module, you can try to force its removal 
+with the following: 
+			sudo rmmod -f uvcvideo 
+(thanks thiagowfx)
+
+To enable your webcam again, type 
+			sudo modprobe uvcvideo 
+into terminal.
+
+If you want the camera to be disabled when you reboot, then press 
+			ALT+F2 
+and paste this command:
+
+			gksu gedit /etc/modprobe.d/blacklist.conf
+
+You will be asked for your password. After giving it, a text file should open. 
+Paste at the end of the text file on a new line:
+
+			blacklist uvcvideo
+
+Then save the file and exit. Next time you start Ubuntu, the webcam should be disabled.
+

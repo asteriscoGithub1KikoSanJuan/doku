@@ -1,0 +1,47 @@
+body {
+	color: #000;
+	background: #fff;
+	font-family: Georgia, serif;
+}
+
+nav, aside, footer, .ad, .post-info, #share, #related, #comments, #pagination {
+	display: none;
+}
+
+header h1 a {
+	text-align: center; text-indent: 0; width: auto; height: auto;
+	font: italic bold 30pt Georgia, Serif; color: black;
+}
+
+#main, #content {
+	width: 100%;
+	padding: 0;
+}
+
+#content-wrapper {
+	top: 0;
+}
+
+#content h2 {
+	font: italic bold 15pt Georgia, Serif;
+	padding: 0 0 20px 0;
+}
+
+#main .post-header h2 a {
+	background: none; position: relative; top: 0;
+	width: auto;
+}
+
+#content h3 {
+	font-size: 18pt;
+}
+
+a {
+	color: #000;
+	text-decoration: none;
+}
+
+#main p a:after {
+	content: " ("attr(href)") ";
+	font-size: 10pt;
+}

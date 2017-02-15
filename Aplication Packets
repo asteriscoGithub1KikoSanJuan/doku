@@ -1,0 +1,64 @@
+
+
+GitKraken
+	wget https://release.gitkraken.com/linux/gitkraken-amd64.deb
+
+	dpkg -i gitkraken-amd64.deb
+-----------------------------------------------------------------------------------------------
+GitEye
+
+	How-to Install GitEye Git Client on Ubuntu 14.04 Trusty LTS GNU/Linux Easy Guide
+
+	1.	Download CollabNet GitEye Client for Linux:
+	2.	Double-Click and Extract into /tmp/GitEye
+	3.	Open a Command Line Terminal Window
+		Ctr+Alt+t on Desktop
+		(Press “Enter” to Execute Commands)
+	4.	Relocating GitEye
+					sudo mv /tmp/GitEye /opt/GitEye
+	5.	Launching GitEye from Shell    Create a Symlink to make it Easier:
+
+					sudo ln -s /opt/GitEye/GitEye /usr/local/bin/GitEye
+
+		Then Launch it simply with:
+							GitEye
+----------------------------------------------------------------------------------------------
+GitEye Install Alternate
+
+sudo add-apt-repository ppa:rabbitvcs/ppa
+sudo apt-get update
+sudo apt-get install rabbitvcs-nautilus3
+
+restart OS
+
+http://www.collab.net/downloads/giteye
+
+$ cd /usr/lib/jvm/java-1.7.0-openjdk/bin/
+
+--------------------------------------------------------------------------------------------------
+Instalar Java
+		Instalando JRE/JDK por defecto
+
+		Esta es la opción más fácil y recomendada. Esto instalará OpenJDK 6 en Ubuntu 			12.04 y superiores, en el caso de 12.10+ se instalará OpenJDK 7.
+
+		Instalando Java con apt-get es fácil. Primero actualizamos el índice de la 			paquetería:
+
+				sudo apt-get update
+
+		Después, revisa si Java no se ha instalado previamente:
+
+				java -version
+
+		Si ese comando regresa "The program java can be found in the following packages", 			significa que Java no ha sido instalado aún, de modo que ejecutaremos el siguiente 			comando:
+
+				sudo apt-get install default-jre
+
+Esto instlará Java Runtime Environment (JRE). Si necesitas en su lugar el Java Development Kit (JDK), que usualmente se requiere para compilar aplicaciones Java; por ejemplo Apache Ant, Apache Maven, Eclipse y IntelliJ IDEA entonces ejecuta el siguiente comando:
+
+				sudo apt-get install default-jdk
+
+-----------------------------------------------------------------------------------------------
+Youtube:
+
+	youtube-dl -o "%(title)s.%(ext)s" "https://www.youtube.com/watch?v=zBiJ2teO-Yo" 
+
